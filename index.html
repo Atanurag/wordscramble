@@ -1,0 +1,439 @@
+<html>
+	<head>
+		  <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Oswald:wght@200&display=swap" rel="stylesheet"> 
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<style>
+
+
+
+ 
+
+</style>
+
+
+
+		<title>Wordscramble</title>
+	</head>
+	<body style="background-color:#2026b2">
+
+
+
+<h4 style="color:white;font-family: 'DynaPuff', cursive;">Wordscramble</h4>
+
+
+
+
+
+<!--UI-->
+<div class="container d-flex align-items-center" style="height:60%;">
+<div  class="container"style="border:1px solid white;width:100%;border-radius:12px ;height:330px;">
+  
+
+<h1 class="text-center mt-3 mb-5" id="jumble" style="color:white;font-family: 'Oswald', sans-serif;"></h1>
+
+
+
+<div style="height:40px;width:50%;display: flex;margin: auto;padding:6px;border: 1px solid grey">
+<input type="text" name="" placeholder="enter correct word" style="width:100%;outline: none ;border:none; background-color:#2026b2;color:white;font-family: 'DynaPuff', cursive;" id="inp1">
+</div>
+
+<p style="margin-left: 42px;color:white;font-family: 'DynaPuff', cursive;margin-top:11px "  id="hint"></p>
+
+
+<h5 style="margin-left: 42px;color:white;font-family: 'Oswald', sans-serif;"id="secs">30s</h5>
+
+<div class="d-flex justify-content-around mx-auto" style="width:60%">
+<button class="btn btn-outline-secondary" id="change1">Change</button>
+<button class="btn btn-outline-success" id="check1">Check</button>
+</div>
+
+
+<p style="color:white;font-family: 'DynaPuff', cursive;" id="score">score: 0</p>
+</div>
+
+</div>
+ <script >
+var jumble=document.getElementById("jumble");
+var hint=document.getElementById("hint");
+var secs=document.getElementById("secs");
+var change1=document.getElementById("change1");
+var check1=document.getElementById("check1");
+var scoreshow=document.getElementById("score");
+var inp1=document.getElementById("inp1");
+
+
+
+
+//prototype
+let pp=document.getElementById("pp");
+let check=document.getElementById('check');
+let inp=document.getElementById('inp');
+
+let strings=[
+
+{
+jumb:"lolhe",
+word:"hello",
+hint:"Says everyone"
+}
+,
+{
+jumb:"ago",
+word:"goa",
+hint:"Place"
+
+},
+{
+        word: "addition",
+        jumb:"diotaind",
+        hint: "The process of adding numbers"
+
+    },
+    {
+        word: "meeting",
+        jumb:"eiegtnm",
+        hint: "Event in which people come together"
+    },
+    {
+        word: "number",
+        jumb:"rubnme",
+        hint: "Math symbol used for counting"
+    },
+    {
+        word: "exchange",
+        jumb:"heneagxc",
+        hint: "The act of trading"
+    },
+    {
+        word: "canvas",
+        jumb:"sanvca",
+        hint: "Piece of fabric for oil painting"
+    },
+    {
+        word: "garden",
+        jumb:"rdenga",
+        hint: "Space for planting flower and plant"
+    },
+    {
+        word: "position",
+        jumb:"ospitnoi",
+        hint: "Location of someone or something"
+    },
+    {
+        word: "feather",
+        jumb:"thfaeer",
+        hint: "Hair like outer covering of bird"
+    },
+    {
+        word: "comfort",
+        jumb:"rtcfomo",
+        hint: "A pleasant feeling of relaxation"
+    },
+    {
+        word: "tongue",
+        jumb:"uegnto",
+        hint: "The muscular organ of mouth"
+    },
+    {
+        word: "expansion",
+        jumb: "ionapexsn",
+        hint: "The process of increase or grow"
+    },
+    {
+        word: "country",
+        jumb:"trcnoy",
+        hint: "A politically identified region"
+    },
+    {
+        word: "group",
+        jumb:"purog",
+        hint: "A number of objects or persons"
+    },
+    {
+        word: "taste",
+        jumb:"etsta",
+        hint: "Ability of tongue to detect flavour"
+
+},
+  {
+        word: "store",
+        jumb:"oster",
+        hint: "Large shop where goods are traded"
+    },
+    {
+        word: "field",
+        jumb:"dfeli",
+        hint: "Area of land for farming activities"
+    },
+    {
+        word: "friend",
+        jumb:"drienf",
+        hint: "Person other than a family member"
+    },
+    {
+        word: "pocket",
+        jumb:"ckepot",
+        hint: "A bag for carrying small items"
+    },
+    {
+        word: "needle",
+        jumb:"eendel",
+        hint: "A thin and sharp metal pin"
+    },
+    {
+        word: "expert",
+        jumb:"teprex",
+        hint: "Person with extensive knowledge"
+    },
+    {
+        word: "statement",
+        jumb:"tatesenmt",
+        hint: "A declaration of something"
+    },
+    {
+        word: "second",
+        jumb:"dosnec",
+        hint: "One-sixtieth of a minute"
+    },
+    {
+        word: "library",
+        jumb:"rayilbr",
+        hint: "Place containing collection of books"
+    },
+
+
+
+
+]
+
+
+
+
+
+/*
+change.disabled=true
+
+var ra=1;
+
+var score=0;
+
+*/
+
+change1.disabled=true
+
+var ra=1;
+
+var score=0;
+
+
+
+let secc=30;
+const sec=()=>{
+secc-=1;
+if(secc===0){
+inp1.disabled=true
+check1.disabled=true
+change1.disabled=false
+}
+
+if(secc===0 && !(inp1.value===strings[ra].word) ){
+alert(`${strings[ra].jumb.split('').join(' ')} = ${strings[ra].word}`)
+
+}
+secs.textContent=`${secc}s`;
+
+}
+
+
+
+
+
+/*
+//time part
+let secc=30;
+const sec=()=>{
+secc-=1;
+if(secc===0){
+inp.disabled=true
+check.disabled=true
+change.disabled=false
+}
+
+if(secc===0 && !(inp.value===strings[ra].correct) ){
+alert(`${strings[ra].jumb.split('').join(' ')} = ${strings[ra].correct}`)
+window.navigator.vibrate(200);
+}
+pp.textContent=secc;
+
+}
+*/
+
+
+
+
+
+
+
+change1.addEventListener('click',()=>{
+change1.disabled=true
+inp1.disabled=false
+check1.disabled=false
+inp1.value=""
+ra=Math.floor(Math.random()*25);
+
+jumble.innerText=strings[ra].jumb.split('').join(' ');
+console.log(strings[ra].jumb.split('').join(' '))
+
+hint.innerText=`hint: ${strings[ra].hint}`;
+
+  console.log(strings[ra].word)
+
+//time part
+
+
+  var ii=setInterval(sec,1000);
+setTimeout(function( ) { clearInterval( ii ); }, 31000);
+if(secc<=0 || secc<=30){
+  secc=30
+}
+
+//time part
+})
+
+
+
+//change button
+/*
+change.addEventListener('click',()=>{
+change.disabled=true
+inp.disabled=false
+check.disabled=false
+inp.value=""
+ra=Math.floor(Math.random()*2);
+
+jumble.innerText=strings[ra].jumb.split('').join(' ');
+console.log(strings[ra].jumb.split('').join(' '))
+
+hint.innerText=strings[ra].mean;
+
+  console.log(strings[ra].correct)
+
+//time part
+if(secc<=0 || secc<=30){
+  secc=30
+}
+
+  var ii=setInterval(sec,1000);
+setTimeout(function( ) { clearInterval( ii ); }, 31000);
+
+//time part
+})
+*/
+
+ var ii=setIntervfal(sec,1000);
+setTimeout(function( ) { clearInterval( ii ); },31000);
+
+
+  console.log(strings[ra].word)
+
+
+
+//check button
+
+
+
+check1.addEventListener('click',()=>{
+  inp1.value;
+
+  
+  //console.log(strings[ra].correct)
+  if(inp1.value===strings[ra].word){
+
+//score depending on word length
+score+=Math.ceil(strings[ra].word.length/2);
+scoreshow.innerText=`score: ${score}`;
+
+//disabling button on check of scorecalculating
+check1.disabled=true
+
+console.log("hdhdh")
+
+    console.log(score);
+  }
+if(score===15){
+alert("yeh!! you are killing it🚀 show your score to our boss ")
+
+}
+
+else{
+window.navigator.vibrate(200);
+//if not same input and string
+console.log("try different word")
+
+
+}})
+
+
+
+
+
+jumble.innerText=strings[ra].jumb.split('').join(' ');
+
+
+hint.innerText=`hint: ${strings[ra].hint}`;
+
+secs.innerText=`${secc}s`;
+
+
+
+
+
+
+/*
+check.addEventListener('click',()=>{
+  inp.value;
+
+  
+  //console.log(strings[ra].correct)
+  if(inp.value===strings[ra].correct){
+
+//score depending on word length
+score+=Math.ceil(strings[ra].correct.length/2);
+
+
+//disabling button on check of scorecalculating
+check.disabled=true
+
+console.log("hdhdh")
+
+    console.log(score);
+  }
+else{
+
+//if not same input and string
+console.log("try different word")
+
+}})
+
+
+
+*/
+
+
+
+//stripe
+
+
+ </script>
+
+
+
+	</body>
+</html>
