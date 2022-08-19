@@ -25,15 +25,15 @@
 
 
 
-<h4 style="color:white;font-family: 'DynaPuff', cursive;">Wordscramble</h4>
+
 
 
 
 
 
 <!--UI-->
-<div class="container d-flex align-items-center" style="height:60%;">
-<div  class="container"style="border:1px solid white;width:100%;border-radius:12px ;height:330px;">
+<div class="container d-flex align-items-center" style="height:60%;margin-top:33px; ">
+<div  class="container"style="border:1px solid white;width:100%;border-radius:12px ;height:335px;">
   
 
 <h1 class="text-center mt-3 mb-5" id="jumble" style="color:white;font-family: 'Oswald', sans-serif;"></h1>
@@ -56,6 +56,8 @@
 
 
 <p style="color:white;font-family: 'DynaPuff', cursive;" id="score">score: 0</p>
+
+<p style="color:white;font-size:13px;font-family: 'DynaPuff', cursive;text-align: right;bottom:  62px;">Wordscramble</p>
 </div>
 
 </div>
@@ -69,12 +71,12 @@ var scoreshow=document.getElementById("score");
 var inp1=document.getElementById("inp1");
 
 
-
+inp1.addEventListener('input',()=>{
+inp1.value=inp1.value.toLowerCase()
+})
 
 //prototype
-let pp=document.getElementById("pp");
-let check=document.getElementById('check');
-let inp=document.getElementById('inp');
+
 
 let strings=[
 
@@ -243,7 +245,7 @@ check1.disabled=true
 change1.disabled=false
 }
 
-if(secc===0 && !(inp1.value===strings[ra].word) ){
+if(secc===0 && !(inp1.value.toLowerCase()===strings[ra].word) ){
 alert(`${strings[ra].jumb.split('').join(' ')} = ${strings[ra].word}`)
 
 }
@@ -350,7 +352,7 @@ setTimeout(function( ) { clearInterval( ii ); },31000);
 
 
 check1.addEventListener('click',()=>{
-  inp1.value;
+inp1.value
 
   
   //console.log(strings[ra].correct)
@@ -367,7 +369,7 @@ console.log("hdhdh")
 
     console.log(score);
   }
-if(score===15){
+else if(score===15){
 alert("yeh!! you are killing it🚀 show your score to our boss ")
 
 }
@@ -378,7 +380,9 @@ window.navigator.vibrate(200);
 console.log("try different word")
 
 
-}})
+}
+
+})
 
 
 
